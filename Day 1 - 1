@@ -1,0 +1,26 @@
+<h1>Top level heading: Maybe a page title</h1>
+
+<p>A paragraph of text. Some information we would like to communicate to the viewer. This can be as long or short as we would like.</p>
+
+<ol>
+  <li>Number one on the list</li>
+  <li>Number two</li>
+  <li>A third item</li>
+</ol>
+
+-----
+
+<h1> : 제목. 1~6까지 있고 1이 제일 크다.
+
+<p> : paragraph. 앞뒤로 <br> 두번한거랑 같다
+
+*<br> : line break. 엔터랑 같다
+
+<ol> : ordered list. 순서있는 목록 
+
+<ol start="숫자"> - 숫자부터 시작함
+<li value="숫자"> - 따로 지정가능
+
+※덤
+<ul>은 순서 없는 목록 unordered list
+<dl>은 정의 목록. definition list
