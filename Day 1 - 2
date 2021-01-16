@@ -37,3 +37,18 @@ alt="이미지가 로딩되지 않았을 때 나오는 텍스트, 동시에 시�
 
 <a> : anchor 앵커. 링크를 만든다. <a href="링크">글</a>
 href = 'h'ypertext 'ref'erence
+
+-----
+
+<a> : 아니다 다른 기능이 더 있다 
+(예시) <a href="#contacts-header">어쩌구</a>
+...
+<h2 id="contacts-header">저쩌구</h2>
+
+<a href="#{ID}">~~</a>를 누르면 (여기서 ~~는 anchor text라고 함)
+<무언가 id="{ID}">의 시작으로 이동하는듯?
+target="_blank"의 경우 새 창을 띄우는듯
+
+Make Dead Links라니 죽은 링크? #이 뭔가 있나 지금은 그냥 쓰라고만 알려주네
+
+<a>안에는 <img></img>도 넣을 수 있음
