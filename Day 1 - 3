@@ -1,0 +1,122 @@
+<h1>Top level heading: Maybe a page title</h1>
+
+<p>A paragraph of text. Some information we would like to communicate to the viewer. This can be as long or short as we would like.</p>
+
+<ol>
+  <li>Number one on the list</li>
+  <li>Number two</li>
+  <li>A third item</li>
+</ol>
+
+-----
+
+<h1> : 제목. 1~6까지 있고 1이 제일 크다.
+
+<p> : paragraph. 앞뒤로 <br> 두번한거랑 같다
+
+*<br> : line break. 엔터랑 같다
+
+<ol> : ordered list. 순서있는 목록 
+
+<ol start="숫자"> - 숫자부터 시작함
+<li value="숫자"> - 따로 지정가능
+
+※덤
+<ul>은 순서 없는 목록 unordered list
+<dl>은 정의 목록. definition list
+
+-----
+
+<!-- and end with a --> : 주석
+
+main, header, footer, nav, video, article, section 가 있음 (자세히는 안알려주네)
+
+<img> : image겠지 뭐 
+src ="이미지 주소" 
+alt="이미지가 로딩되지 않았을 때 나오는 텍스트, 동시에 시각장애인들을 위한 기능인 screen reader가 이미지를 읽을 때 읽어주는 내용" alternate 의미없을경우 alt =""로
+
+<a> : anchor 앵커. 링크를 만든다. <a href="링크">글</a>
+href = 'h'ypertext 'ref'erence
+
+-----
+
+<a> : 아니다 다른 기능이 더 있다 
+(예시) <a href="#contacts-header">어쩌구</a>
+...
+<h2 id="contacts-header">저쩌구</h2>
+
+<a href="#{ID}">~~</a>를 누르면 (여기서 ~~는 anchor text라고 함)
+<무언가 id="{ID}">의 시작으로 이동하는듯?
+target="_blank"의 경우 새 창을 띄우는듯
+
+Make Dead Links라니 죽은 링크? #이 뭔가 있나 지금은 그냥 쓰라고만 알려주네
+
+<a>안에는 <img></img>도 넣을 수 있음
+
+-----
+
+<ul>, <ol>은 뭐... intro보면서 찾아본거라
+
+<input type="text"> 과연 이것은 어떻게 변형될 것인가
+<input type="text" placeholder="this is placeholder text"> placeholder : 미입력시 회색 글자로 보인다.
+
+<form action="/url-where-you-want-to-submit-form-data"></form>
+form 안에 <input>을 넣어?
+
+<button type="submit">this button submits the form</button> 버튼이 나옴
+
+<input ~~ required> : 빈칸을 입력 못하게 막기 빈칸으로 제출하려고 하면 [주황느낌표]이 입력란을 작성하세요.라고 뜸
+
+<label> 
+  <input type="radio" name="indoor-outdoor">Indoor 
+</label>
+radio 버튼이라길래 뭔가했더니 객관식 고르기할때 누르는 동그란거
+
+얘 생각보다 발목을 잡는데?
+label로 묶으면 그 공간을 누르기만해도 버튼이 눌림. 두 개 이상의 버튼이 있을 경우 맨 앞에 거가 눌리는 듯
+name이 같은 애들은 중복해서 못고름
+
+for랑 id를 설명해주는데 이게 왜 있는건가 싶었다만
+<label for="indoor"> 
+  <input id="indoor" type="radio" name="indoor-outdoor">Indoor 
+</label>
+이렇게 설명해주니까 왜있는거지??? 싶지
+
+<label for="indoor"> Indoor </label>
+<input id="indoor" type="radio" name="indoor-outdoor">
+이렇게 만들면 Indoor를 눌러도 눌림
+
+label안에 넣을거면 for이랑 id를 쓸 필요가 X
+
+radio 대신에 checkbox하면 칸이 네모네짐
+기능적 차이는 없다.
+
+value는 뭐라 설명해야하지. name의 값이 될 것들? 선택되면 {name} = {value}가 되는?
+
+input에 checked를 해두면 체크된 상태가 되어있음(고정은 아님)
+만약 name이 같은 애들을 여러개 체크해두면 제일 마지막애가 체크되어있음
+
+radio랑 checkbox의 차이 : checkbox는 해제할 수 있음
+
+<div> : division
+...? 뭘 안알려주고 그냥 끝남
+
+<!DOCTYPE html> - 옛날 웹페이지의 경우 예전 언어로 만들었을 수 있다. 이 문서(?)가 어떤 버전을 알려주는 역할을 하는 중요한 아이라는데 제대로 이해한게 맞나.
+뭔일이 생길지 모르니까 생략하지 말라는 건가? 아니면 뭔 일이 100% 생길거니까 생략하지 말라는 건가.
+!DOCTYPE ...에 ...이 버전인데 HTML5는 html이다.
+<html>
+  <!-- Your HTML code goes here --> 내가 그동안 만들었던 것들이 여기 들어가겠지 뭐
+</html>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- metadata elements --> link, meta, title, and style가 여기 들어간다는데 typically라는 말을 쓰는걸 보면 안 그래도 상관은 없다는 건가.
+  </head>
+  <body>
+    <!-- page contents -->
+  </body>
+</html>
+
+뭐야 끝이야?
