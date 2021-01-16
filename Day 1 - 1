@@ -24,3 +24,16 @@
 ※덤
 <ul>은 순서 없는 목록 unordered list
 <dl>은 정의 목록. definition list
+
+-----
+
+<!-- and end with a --> : 주석
+
+main, header, footer, nav, video, article, section 가 있음 (자세히는 안알려주네)
+
+<img> : image겠지 뭐 
+src ="이미지 주소" 
+alt="이미지가 로딩되지 않았을 때 나오는 텍스트, 동시에 시각장애인들을 위한 기능인 screen reader가 이미지를 읽을 때 읽어주는 내용" alternate 의미없을경우 alt =""로
+
+<a> : anchor 앵커. 링크를 만든다. <a href="링크">글</a>
+href = 'h'ypertext 'ref'erence
