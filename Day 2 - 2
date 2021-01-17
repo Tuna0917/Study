@@ -156,5 +156,140 @@ Helvetica를 못 쓰는 상황에 sans-serif를 보여주나봅니다
 
 쉽네
 
+-----
 
 10. Add Borders Around Your Elements
+
+예시 : <style>
+  .thin-red-border {
+    border-color: red;
+    border-width: 5px;
+    border-style: solid;
+  }
+</style>
+
+border-color,width,style
+color은 색이겠고 width는 폭이겠고
+style에는 뭐가 있을려나 liquid도있나 없네
+
+예시 2 : <img class="class1 class2">
+
+한번에 두개이상의 클래스를 적용할 수 있고, 그 경우 띄어쓰기로만 구분하는듯
+
+
+11. Add Rounded Corners with border-radius
+
+border-radius: 10px
+이미지의 뾰쪾한 모서리를 둥글게 다듬어준다
+이미지의 width랑 같으면 원이됨
+
+
+12. Make Circular Images with a border-radius
+
+border-radius : 50%
+
+픽셀대신 %로도 할 수 있다
+50이 최대인듯
+
+
+13. Give a Background Color to a div Element
+
+예시 : .green-background {
+  background-color: green;
+}
+
+배경색 지정 그이상도 그이하도 아니다
+
+
+14. Set the id of an Element
+
+<form>에 id를 추가하는거
+
+id랑 class의 차이가 뭐지?
+
+
+15. Use an id Attribute to Style an Element
+
+예시 : #cat-photo-element {
+  background-color: green;
+}
+
+class는 .을 id는 #을 쓰는듯
+끝?
+
+
+16. Adjust the Padding of an Element
+
+예시 :가 딱히 없고
+  .injected-text {
+    margin-bottom: -25px;
+    text-align: center;
+  }
+  
+  .box {
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    text-align: center;
+  }
+  
+  .red-box {
+    background-color: crimson;
+    color: #fff;
+    padding: 20px;
+  }
+  
+이런것들이 있다
+하나하나 보면
+margin-bottom : px - 글자 아래에 얼마나 칸을 벌려둘 것인가. 음수로 설정하면 아래에 있는 애들이랑 겹쳐짐
+text-align : (위치) - 아마 정렬인듯 왼쪽,중간,오른쪽
+padding : px - 뭘까. 공백? 좌우? 전후좌우?
+
+그래서 검색해봤다
+margin - element와 element 사이의 여백
+border - 그 경계선
+padding - border와 content사이의 여백
+
+
+17. Adjust the Margin of an Element
+
+예시 : margin: px;
+
+16에 있음. 생략
+
+
+18. Add a Negative Margin to an Element
+
+margin에 -를 넣었더니 크기가 커지네
+
+음...
+아직은 어따 쓸지 잘 모르겠다 예시도 별로 안예쁘고
+
+
+19. Add Different Padding to Each Side of an Element
+
+padding을 top right bottom left로 쪼갤 수 있다
+
+ex) padding-top
+
+
+20. Add Different Margins to Each Side of an Element
+
+19랑 정말 똑같다
+좌우랑 위아래 px은 같을 필요가 없다는것밖에 뭐... 없는데
+
+21. Use Clockwise Notation to Specify the Padding of an Element
+
+예시 : padding: 10px 20px 10px 20px;
+
+순서대로 12시 3시 6시 9시방향 그래서 Clockwise인듯
+3개만 쓰면 12시 3시 6시만
+2개만 쓰면 12시 3시
+1개만 쓰면 전방향
+
+21. Use Clockwise Notation to Specify the Margin of an Element
+
+20을 padding에서 margin으로 바꿨을뿐
+
+
+
