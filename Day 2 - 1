@@ -1,0 +1,160 @@
+Note that CSS is case-sensitive so be careful with your capitalization.
+
+CSS has been adopted by all major browsers and allows you to control:
+
+color
+fonts
+positioning
+spacing
+sizing
+decorations
+transitions
+
+There are three main ways to apply CSS styling. You can apply inline styles directly to HTML elements with the style attribute. Alternatively, you can place CSS rules within style tags in an HTML document. Finally, you can write CSS rules in an external style sheet, then reference that file in the HTML document. Even though the first two options have their use cases, most developers prefer external style sheets because they keep the styles separate from the HTML elements. This improves the readability and reusability of your code.
+
+The idea behind CSS is that you can use a selector to target an HTML element in the DOM (Document Object Model) and then apply a variety of attributes to that element to change the way it is displayed on the page.
+
+In this section, you'll see how adding CSS styles to the elements of your CatPhotoApp can change it from simple text to something more.
+
+
+CSS는 Cascading Style Sheets의 약자
+계단식 스타일 시트?
+
+페이지를 HTML만으로 만들기에는 너무 힘들어서 보조해주는 역할을 한다고 이해하면 되는 건가?
+
+
+1. Change the Color of Text
+
+예시 :  <h2 style="color: blue;">CatPhotoApp</h2>
+
+<태그 style="~~~">를 쓰면 되는군
+color: blue;을 보면 하나를 지정(?)하고 세미콜론을 써줘야하나보네
+하나만 썼을 때, 안 적으면 어떻게 되지? 일단 문제는 없는 것 같긴 한데
+blue red처럼 색의 이름말고 aaee88처럼 헥스코드를 적어도 되네 #은 있어도 되고 없어도 되는 것 같긴한데
+
+
+2. Use CSS Selectors to Style Elements
+
+예시 : <style>
+  h2 {
+    color: red;
+  }
+</style>
+
+<style>안에 태그 { ~~; } 를 적어놓으면 되는군
+근데 이거 그럼 h2는 전부 빨강이 되는 건가?
+어떤 h2는 파랑으로 하고 싶을 수도 있잖아
+디폴트로 만드는 거군 
+직접 그 태그에 1번처럼 스타일로 지정하면 되네
+<style>을 맨 아래에다가 두면 어떻게 되지?
+그래도 색이 변하네 위치는 상관없나보다
+
+<h2 style="color:blue">CatPhotoApp</h2>
+<style>
+  h2{
+    color: red;
+  }
+</style>
+
+이렇게 적어도 CatPhotoApp은 파랑으로 나오는걸 보면 직접 지정한게 1순위인가보네
+위에서 아래로 읽을테니까 파랑을 먼저받고 그다음에 빨강 받으니까 빨강이 될줄
+
+<style>
+  h2 {
+    color: blue;
+  }
+</style>
+<style>
+  h2{
+    color: red;
+  }
+</style>
+이럴경우에는 red로 받음 스타일끼리 붙을때는 맨 아래에 있는 애가 승자인듯
+
+
+3. Use a CSS Class to Style an Element
+
+예시 : <style>
+  .blue-text {
+    color: blue;
+  }
+</style>
+<h2 class="blue-text">CatPhotoApp</h2> 
+
+.이름 { ~~ } 하면 class인가부다
+<태그 class="이름">하면 끝
+쉽네
+
+
+4. Style Multiple Elements with a CSS Class
+
+3의 응용?이라고 해야하나
+스타일 시트의 장점을 알려주는 거라고 해야하나
+모든 태그가 아니라 원하는 태그에만 스타일을 적용할 수 있게 해준다는 내용
+
+
+5. Change the Font Size of an Element
+
+예시 : h1 {
+  font-size: 30px;
+}
+
+color말고 다른 것도 있는데 그 중 하나인 font-size를 한번 써볼까?라는 느낌
+px = pixel
+px는 생략해도 문제 없는것같은데? px말고 다른 것도 있을려나
+미터는 km, m, cm, mm가 있듯이
+폰트 크기도 px말고 다른 단위가 있을 수도 있겠지만
+생각해보니 px를 안 쓸 이유가 뭐가 있나 싶기도 하고
+
+
+6. Set the Font Family of an Element
+
+예시 : h2 {
+  font-family: sans-serif;
+}
+
+font-family는 글씨체
+나눔명조체도 인식하는걸 보면 그냥 폰트이름은 다 될듯
+폰트이름이 특수문자인 애들도 있을려나~
+
+
+7. Import a Google Font
+
+예시 : <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+사용자한테 폰트가 없는게 문제인걸까 아니면 작성자에게 폰트가 없는게 문제일까?
+아무튼 모든 폰트를 다운받을 수도 없는 노릇이니 Google한테 도움을 받자! 는 내용같은데
+이번에도 스타일 앞에 붙이라네 뒤에 붙이면 어떻게 되길래... 문제 없는데?
+
+font-family: FAMILY_NAME, GENERIC_NAME;
+
+FAMILY_NAME에는 폰트이름을
+뒤에도 폰트이름이긴한데 이건 FAMILY_NAME으로 못 보여줄 때 보여주는 다른 폰트인듯 없으면 디폴트로 나오지 않을까 폰트 이름은 모르겠지만 아무튼
+<style>안에다가 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">를 붙여넣으니 먹통이 되는걸 보아 style 안에서는 <>도 그냥 문자로 취급하는듯
+
+
+8. Specify How Fonts Should Degrade
+
+예시 : p {
+  font-family: Helvetica, sans-serif;
+}
+
+네
+맞네요
+Helvetica를 못 쓰는 상황에 sans-serif를 보여주나봅니다
+둘다 안되면?
+기본폰트로 보여주겠지 뭐...
+
+
+9. Size Your Images
+
+예시 : <style>
+  .larger-image {
+    width: 500px;
+  }
+</style>
+
+쉽네
+
+
+10. Add Borders Around Your Elements
