@@ -292,4 +292,204 @@ ex) padding-top
 20을 padding에서 margin으로 바꿨을뿐
 
 
+22. Use Attribute Selectors to Style Elements
+
+지금까지 한 거는 ID랑 Class
+
+이제부터 할 거는?
+
+[attr=value]
+
+예시 : [type='radio] {
+  margin: 20px 0px 20px 0px;
+}
+
+딱보면 뭐하는건지 감이 온다?
+radio의 margin을 건들인다.
+
+
+23. Understand Absolute versus Relative Units
+
+여기서 나오네 5번에서 들었던 의문?이라고 해야하나.
+px대신에 em과 rem을 쓸 수도 있구나
+
+em is based on the size of an element's font.
+
+rem : root즉 최상위요소(html)의 폰트크기에 곱함
+em : 태그 내부의 폰트크기에 곱함
+
+
+24. Style the HTML Body Element
+
+예시 : body {
+  background-color: black;
+}
+
+25. Inherit Styles from the Body Element
+
+<style>
+  body {
+    background-color: black;
+    color: green;
+    font-family: monospace;
+  }
+
+</style>
+
+<h1>Hello World</h1>
+
+26. Prioritize One Style Over Another
+
+Override가 나오네
+세상에
+
+요약 - body랑 class랑 싸우면 누가 이기나요?
+class요
+
+
+27. Override Styles in Subsequent CSS
+
+class끼리 싸우면 앞엣놈이 이기나요? 뒤엣놈이 이기나요?
+
+뒤요
+
+
+28. Override Class Declarations by Styling ID Attributes
+
+id랑 class랑 붙으면 누가 이기나요?
+
+id요
+
+29. Override Class Declarations with Inline Styles
+
+id랑 inline style이랑 붙으면 누가 이기나요?
+
+inline style이요
+
+
+30. Override All Other Styles by using Important
+
+Yay!
+
+!important를 배웠다!
+예시 - color: red !important;
+
+만약 !important붙은 애들이 여러개면?
+
+그럼 !important있는 애들끼리 싸우겠지
+
+
+31. Use Hex Code for Specific Colors
+
+이거 color 처음 나왔을때부터 알아냈던거잖아
+
+패스
+
+32. Use Hex Code to Mix Colors
+
+동일하다 PASS
+
+33. Use Abbreviated Hex Code
+#FF0000이랑 #F00이랑 exactly the same color이라는데
+맞긴하지
+Short Hex Code에 대해서 알려준다 PASS
+
+34. Use RGB values to Color Elements
+
+오... rgb(0, 0, 0)로도 색을 지정할 수 있다
+사실상 Hex Code를 십진법으로 바꾼거긴하지만 뭐 아무튼
+괜찮네
+
+35. Use RGB to Mix Colors
+
+34의 응용이다 PASS
+
+sienna는 사람이름같아서는 갈색 비스무리한거네 rgb(160, 82, 45)
+
+
+36. Use CSS Variables to change several elements at once
+
+보자마자 드는 생각은 와 이걸로 펭귄을 그리네
+
+그것도 엄청 자연스럽게
+대박이다 진짜...
+물론 감상은 그게 끝
+
+--penguin-skin: gray;
+--penguin-belly: white;
+--penguin-beak: orange;
+
+프로그래밍이랑 비슷하네 효율적이고 좋구만
+background: var(--penguin-skin, gray)
+var(A,B)
+A가 없으면 B가 나오는 구조
+
+
+37. Create a custom CSS Variable
+
+36이랑 37이랑 순서가 바뀐거같은데?
+
+
+38. Use a custom CSS Variable
+
+var()에 대해서 알려줌
+background: var(--penguin-skin)
+굳이 var을 써야하나?
+그러네 그냥 --penguin-skin쓰면 못알아먹네
+
+39. Attach a Fallback value to a CSS Variable
+
+36에서 찾은거 
+background: var(--penguin-skin, black)
+--penguin-skin이 없으면 black이 나온다는 그거
+
+뭘 실수했지?
+오타 없고 ;있고 
+
+나갔다 다시 들어가서 쓰니까 또 되네? 버근가
+
+
+40. Improve Compatibility with Browser Fallbacks
+또 Fallback
+익스플로러 연전연패하네
+fallback의 존재이유는 사실상 익스플로러를 위한 것인가?
+
+:root {
+    --red-color: red;
+  }
+  
+:는 처음보는데 뭐지 
+얘 진짜 깐깐하네
+아니 근데
+.red-box {
+    background: red;
+    background: var(--red-color);
+    height: 200px;
+    width:200px;
+  }
+코드를 이렇게 짤거면 background: var(--red-color)는 왜 필요한거지 아무리 예제라지만 좀 현실적이면 좋겠다.
+
+
+41. Inherit CSS Variables
+
+:가 아니라 :root가 특별한거였구나
+pseudo-class selector
+
+42. Change a variable for a specific area
+
+이름이 겹치면 나중에 써진 애가 적용된다?
+ 그정도밖에 못얻어가겠는데
+
+43. Use a media query to change a variable
+펭귄 팔이 움직여 
+
+@media라든가
+rotate라던가
+뭐 별거 다 나오는데
+알려주는건... 뭘 뭘알려준거지
+
+
+
+
+
 
