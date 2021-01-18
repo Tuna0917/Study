@@ -1,0 +1,21 @@
+$ python -m pip install Django
+을 하라고 했으니까
+$ python3 -m pip install Django
+로 했음 (내 맥북은 python3더라 왜인지는 모르겠지만)
+
+그 후 pip를 업그레이드 하라고 해서 터미널에 나온 것처럼
+
+$ pip install --upgrade pip
+
+를 따라 썼더니 에러가 뜸
+검색해보니 pip3로 해야했음 왜지
+
+$ pip3 install --upgrade pip
+
+시작은 pip3인데 업그레이드는 pip네 이래도 되는 건가?
+그래서 pip를 pip3로 했더니 빨간 ERROR가 떴다 (왜)
+
+mkdir djangotutorial
+cd djangotutorial
+
+오늘은 여기까지
