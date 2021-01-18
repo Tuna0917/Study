@@ -1,0 +1,39 @@
+https://backlog.com/git-tutorial/kr/intro/intro2_1.html
+
+1단계가 Clone this repository인데 이것도 할줄 몰라서 구글에게 도움받는 처지란...
+
+https://mygumi.tistory.com/75
+
+Permission denied (publickey).가 뜨니까 일단 검색해봐야지
+
+cat /root/.ssh/id_rsa.pub 을 치면 'cat'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다. 라고 뜨는데...
+
+https://kwonsaw.tistory.com/146
+
+path를 손보라며
+아 왜 안되는데
+
+https://somjang.tistory.com/entry/Windows-%EB%AA%85%EB%A0%B9-%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8cmd%EC%97%90%EC%84%9C-ls-clear-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95
+Window 1패
+
+아 이래도 안되잖아
+
+https://velog.io/@sdc337dc/git-RSA-%ED%82%A4-%EC%97%90%EB%9F%AC-%EB%B0%9C%EC%83%9D%EC%8B%9C
+아 cmd에서 하는게 아니었어
+
+
+ cd = change directory
+ 
+ Install pyenv.
+Install pyenv-virtualenv.
+
+영어공부를 안한 문제인가?
+아니 그런게 아닌 것 같은데 그냥 용어를 모르는 것 같은데
+
+$ eval "$(pyenv init -)"
+/c/Users/Zero/.pyenv/bin/pyenv: line 1: ../libexec/pyenv: No such file or directory
+
+이거 어떻게 해결하냐 진짜
+django-realworld-example-app은 여기까지
+내 힘으로는 무리 구글에도 뭐 뾰족한 방법도 안나오고 그나마 core.symlinks=false를 true로 바꾸면 뭐가 될줄 알았는데 택도없지
