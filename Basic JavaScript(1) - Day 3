@@ -1,0 +1,53 @@
+주석처리 하는법
+// 한줄
+/* 여
+러
+줄 */
+
+
+JavaScript provides eight different data types which are undefined, null, boolean, string, symbol, bigint, number, and object.
+
+12는 number
+"~~"는 string
+
+Variables
+
+ex) var Variables;
+
+이하 흔한 프로그래밍 언어 관련 설명들
+JAVA였으면 int Var = 10; 으로 했을텐데 얘네는 그냥 var 쓰네
+파이썬과 자바의 짬뽕같은 느낌
+
+++; --;를 쓰는 거 보면 역시 'Java'Script인가
+
+var만 쓰면 그냥 파이썬이랑 다를게 없네 
+
+잠깐만 세미콜론 빼봤는데 왜 정상작동함?
+
+여긴 \ 알려주네 나는 혼자 알아야 했는데 와 친절하구만
+
+인용구를 쓸 때(굳이 프로그래밍할때 그럴 일이 있나 싶긴 하지만)
+홑따음표롤 쓰면 그안의 "는 \붙일 필요 없음
+물론 '는 \'로 써야겠지만
+
+재밌네 \종류도 다 알려주네
+\' \" \\는 아는 거고
+\n이랑 \t도 알고있고
+
+\r이랑 \b랑 \f는 처음보네
+\r = carriage return (\n랑 뭐가 다르지)
+\b = word boundary (뭐 이상한 특수문자같은게 나오네)
+\f = form feed (얘는 뭐지???)
+
+예전에는 \r로 줄의 맨 앞으로 이동했고
+\n으로 한줄 아래로 내려갔지만
+요즘에는 그럴 필요가 없어서 둘 중 하나만 있어도 엔터로 취급한다
+
+\f는 프린트 기능과 연관되어있다니까 뭐 필요하면 그때 파고들면 될듯
+
+\b는... 모르겠다 그냥 특수문자같은데
+
+
+"String".length;
+
+
