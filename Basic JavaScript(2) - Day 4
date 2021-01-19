@@ -1,0 +1,26 @@
+X = "Hello World"일때
+X[0] == "H"다
+하지만 X[0] = "h"를 쓰면 에러 << 파이썬 쓰면서 한번도 해본 적 없는 짓인데 허어 
+그래서 해보니까
+TypeError: 'str' object does not support item assignment << 파이썬에서는 이런 문구가 튀어나옴
+
+String cannot be altered once created.
+
+
+var X = [~,~,~] //~는 String과 Number가 섞일 수 있다
+파이썬인데?
+
+파이썬은 append()
+js는 push()
+
+pop()은 동일
+
+console.log()가 뭔지 설명은 안해주다니
+역할만 보면 print()같긴한데
+
+shift()는 맨앞에거 반환하네
+unshift()는 맨앞에 추가하고 (얘네 O(N)이겠지? 검색해도 안나오네)
+
+
+파이썬은 def 
+js는 function
