@@ -1,0 +1,163 @@
+https://docs.djangoproject.com/ko/3.1/intro/tutorial01/
+
+
+
+어제 디렉토리를 만들어두기까지만 했다. 이동하자
+$ cd djangotutorial 
+
+dt로 만들걸
+
+$ django-admin startproject mysite
+
+mysite 디렉토리로 이동
+
+$ cd mysite
+$ python manage.py runserver
+
+File "manage.py", line 17
+    ) from exc
+         ^
+SyntaxError: invalid syntax
+
+ㅇ?
+
+https://velog.io/@ash3767/django-에러-모음
+
+ㅇ??
+
+VScode로 파일을 확인해보니
+"Couldn't import Django. Are you sure it's installed and "
+"available on your PYTHONPATH environment variable? Did you "
+"forget to activate a virtual environment?" << 이 문제인 것 같은데
+
+가상환경... 어떻게하지
+
+$ conda env list
+-bash: conda: command not found
+
+conda 아나콘다가 없다는 것 같다
+다운받으려 하니 
+64-Bit Graphical Installer (435 MB)
+64-Bit Command Line Installer (428 MB)
+
+두가지 선택지가 보인다 뭘 다운받지?
+
+https://cedo.tistory.com/25
+
+아래쪽으로 다운받았다
+파일명이 Anaconda3-2020.11-MacOSX-x86_64.sh니까
+$ bash Anaconda3-2020.11-MacOSX-x86_64.sh
+
+안되네
+
+$ bash ~/Downloads/Anaconda3-2020.11-MacOSX-x86_64.sh
+
+음
+뭔가 실수한 것 같은데
+갑자기 맥북에서 '타닥' '틱' 소리가 나더니 온도가 99도 뚫고 그러는데
+괜찮겠지?
+
+yes를 입력하려고 하는데 y가 계속 나와가지고 강제종료함;;
+;;;;;; 아니... 일단 아이스팩 들고옴
+
+폴더를 삭제하고 다시 설치한다. 소리가 왜이리 살벌하지?
+
+결국 발열잡으려고 노트북 들고 밖으로 나감
+이거 성능 왜이래
+
+chrome을 그만 써야겠다. safari로 갈아탐
+
+
+-----
+
+우연인지 아닌지는 몰라도 발열은 나아짐
+
+$ conda create --name asdf
+
+실행은 
+$ source activate asdf
+
+해제는
+$ source deactivate
+
+아무튼 실행을 했더니
+오잉
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run $ conda init <SHELL NAME>
+
+SHELL NAME에 뭘 적어야하지? 하면서 검색해봤는데
+그냥 conda init만 치더라고
+해봤더니 No change만 가득하더라 아무튼 끄고 다시 켰더니
+(base) heo~~~:~ $
+oh
+뭔가 실행된듯
+
+$ source activate asdf
+
+(asdf) heo~~~:~ $
+
+굿
+
+$ python manage.py runserver 인데
+python3로 쳐봄 그야 나는 python3로 계속 했으니까
+
+$ python3 manage.py runserver 
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them. //이거 빨간 글씨로 나옴
+
+January 19, 2021 - 06:37:33
+Django version 3.1.5, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+음
+내가 보고있는 놈도 You have unapplied migrations; your app may not work properly until they are applied.
+Run 'python manage.py migrate' to apply them.라는 메세지가 출력된 거 보면 정상인듯
+
+http://127.0.0.1:8000/ 
+
+와~
+
+>> 앱을 생성하기 위해 manage.py가 존재하는 디렉토리에서 다음의 명령을 입력해 봅시다.
+
+그럼 서버에서 나가는게 맞겠지?
+맞겠지?
+
+[키보드] Control + C
+
+mysite로 가보니까 db.sqlite3 이라는게 생김 뭘까
+
+$ python manage.py startapp polls
+또 이대로 쓸뻔
+
+$ python3 manage.py startapp polls
+
+polls가 생겼다 재밌네
+
+>>첫 번째 뷰를 작성해봅시다. 《polls/view.py》를 열어 다음과 같은 파이썬 코드를 입력합니다
+
+이제부터 코딩 시작인가? VScode는 최고야~
+
+시키는대로 코딩을 완료하고
+
+$ python3 manage.py runserver 
+
+http://localhost:8000/polls/
+
+오
+
+아 그리고 에러메세지가 신경쓰여서
+$ python3 manage.py migrate
+$ python3 manage.py runserver 
+
+깔끔해졌다 
+'^')b
+
+part1은 이걸로 마무리 
