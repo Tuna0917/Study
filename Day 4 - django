@@ -1,0 +1,64 @@
+어제 디렉토리를 만들어두기까지만 했다.
+
+$ django-admin startproject mysite
+
+mysite 디렉토리로 이동
+
+$ cd mysite
+$ python manage.py runserver
+
+File "manage.py", line 17
+    ) from exc
+         ^
+SyntaxError: invalid syntax
+
+ㅇ?
+
+ㅇ??
+VScode로 파일을 확인해보니
+"Couldn't import Django. Are you sure it's installed and "
+"available on your PYTHONPATH environment variable? Did you "
+"forget to activate a virtual environment?" << 이 문제인 것 같은데
+
+가상환경... 어떻게하지
+
+$ conda env list
+-bash: conda: command not found
+
+conda 아나콘다가 없다는 것 같다
+다운받으려 하니 
+64-Bit Graphical Installer (435 MB)
+64-Bit Command Line Installer (428 MB)
+
+두가지 선택지가 보인다 뭘 다운받지?
+
+https://cedo.tistory.com/25
+
+아래쪽으로 다운받았다
+파일명이 Anaconda3-2020.11-MacOSX-x86_64.sh니까
+$ bash Anaconda3-2020.11-MacOSX-x86_64.sh
+
+안되네
+
+$ bash ~/Downloads/Anaconda3-2020.11-MacOSX-x86_64.sh
+
+음
+뭔가 실수한 것 같은데
+갑자기 맥북에서 '타닥' '틱' 소리가 나더니 온도가 99도 뚫고 그러는데
+괜찮겠지?
+
+yes를 입력하려고 하는데 y가 계속 나와가지고 강제종료함;;
+;;;;;; 아니... 일단 아이스팩 들고옴
+
+폴더를 삭제하고 다시 설치한다. 소리가 왜이리 살벌하지?
+
+결국 발열잡으려고 노트북 들고 밖으로 나감
+이거 성능 왜이래
+
+chrome을 그만 써야겠다. safari로 갈아탐
+
+
+
+
+
+
