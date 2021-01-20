@@ -79,4 +79,22 @@ $ python3 manage.py migrate
 
 API 가지고 놀기
 
+시키는대로 하긴 했는데...
+
+def __str__(self):는 자바의 toString이랑 똑같은 역할을 하는군
+뭐 이런거말고는 솔직히 알아보는 것도 없고
+
+그냥 까라는대로 까는 느낌
+
+오히려 models.py 작성할 때
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+여기서 왜 매개변수(매개변수가 맞긴 한가?)에 models.Model을 썼는데
+코드에는 왜 models만 쓰는건지
+VScode에서 왜 models.Model이 Question이랑 같은 색으로 나오는 건지
+
+그런거?
+
+
 
