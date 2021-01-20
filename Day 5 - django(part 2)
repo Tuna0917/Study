@@ -1,3 +1,5 @@
+https://docs.djangoproject.com/ko/3.1/intro/tutorial02/
+
 데이터베이스 설치
 
 >> mysite/settings.py 파일을 열어보세요. 이 파일은 Django 설정을 모듈 변수로 표현한 보통의 Python 모듈입니다.
@@ -47,3 +49,34 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
     
 Command+c,v하면 남는게 진짜 없을 것 같아서 직접 치긴 했지만 아무튼 뇌빼고 복붙하긴 했는데 
+이게뭐람
+
+question_text 또는 pub_date는 기계가 읽기 좋은 형식의 데이터베이스 필드 이름이다.
+
+이 예제에서는 Question.pub_date에 한해서만 인간이 읽기 좋은 형태의 이름을 정의한다?
+
+각각의 Choice가 하나의 Question에 관계된다.
+
+뭘 모르는건지도 모르겠다 일단 하다보면 되겠지
+
+polls앱이 설치되어있다는 것을 알려야한다
+
+PollsConfig는 polls의 apps에 있으니 polls.apps.PollsConfig고
+
+이걸 settings의 INSTALLED_APPS에 추가한다.
+
+그후
+$ python3 manage.py makemigrations polls
+
+$ python3 manage.py migrate
+
+요약(모델 변경하는법)
+-----
+modles.py에서 모델 변경
+$ python3 manage.py makemigrations ~~
+$ python3 manage.py migrate
+-----
+
+API 가지고 놀기
+
+
