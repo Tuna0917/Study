@@ -1,0 +1,141 @@
+나름 파이썬은 할 줄 안다고 자부했던 나
+사실 Python의 P밖에 모르는 거 아니었을까?
+
+https://docs.djangoproject.com/ko/3.1/intro/tutorial03/
+
+하라는대로 다 하고있는데 views.py에서 말썽이다
+정확히는 views.py에 import한 Question이 말썽이다
+
+내가 짠 class Question(models.Model)에는 objects도 없고 DoesNotExist도 없어서 VScode에 빨간 밑줄이 나온다
+작동에 문제는 없는데 그거랑 별개로 신경쓰인다
+
+기껏 template= loader.get_template('polls/index.html')만들어놓고
+바로 그 아래에서 지우게하네
+
+처음부터 render을 알려주면 안되는 건가
+
+머릿속에 들어오질 않으니 하나씩 봐야겠다
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    output = ', '.join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
+    
+>>latest_question_list = Question.objects.order_by('-pub_date')[:5]
+Question.objects를 -pub_date를 기준으로 정렬해서 순서대로 5개
+output은 그것들의 question_text를 ', '로 묶은거
+output = 'q1, q2, q3, q4, q5'
+
+>>여기 몇가지 문제가 있습니다. 뷰에서 페이지의 디자인이 하드코딩 되어 있다고 합시다. 만약 페이지가 보여지는 방식을 바꾸고 싶다면, 이 Python 코드를 편집해야만 할 겁니다
+>>그럼, 뷰에서 사용할 수 있는 템플릿을 작성하여, Python 코드로부터 디자인을 분리하도록 Django의 템플릿 시스템을 사용해 봅시다.
+
+그래서 templates를 만들었고
+
+html은 그냥 패스 뭔 소리인지 솔직히 몰라
+
+
+{% %}는 템플릿 언어다
+>> 장고에서 제공해주는 <<
+{% 태그 %}
+{{ 변수 }}
+필터 {{ 변수| length }}
+
+-----
+from django.http import HttpResponse
+from django.template import loader
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    
+    template = loader.get_template('polls/index.html')
+    //loader.get_template('~~.html') 아마 template를 불러오는 거
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return HttpResponse(template.render(context, request))
+    
+
+   HttpResponse( ', '.join([q.question_text for q in latest_question_list]) )에서
+   HttpResponse( template.render(context, request) ) 으로 바꼇고
+   
+   저 template.render(context, request)는 context를 보면 'latest_question_list': latest_question_list
+   template의, 그니까 index.html의 'latest_question_list'를 latest_question_list 즉 Question.objects.order_by('-pub_date')[:5]로 지정?한다고 해야하나
+
+
+그리고 이제
+
+지름길: render()
+
+지름길
+ shortcut이겠지
+
+-----
+from django.shortcuts import render
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
+   
+   
+HttpResponse(~~)대신
+render(request, 'polls/index.html', context)
+request, 렌더링할 애, 그 내용물
+
+나쁘지않네 
+
+-----
+from django.shortcuts import get_object_or_404, render
+
+from .models import Question
+# ...
+def detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
+    
+get_object_or_404(~~)
+~~를 못 받으면? 유의미한 값이 없으면?
+그럼 404를 주는 것 같고
+
+-----
+index.html
+...
+<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+...
+
+이게 하드코딩 된건가? 왜?
+
+>>이러한 강력하게 결합되고 하드코딩된 접근방식의 문제는 수 많은 템플릿을 가진 프로젝트들의 URL을 바꾸는 게 어려운 일이 된다는 점입니다. 그러나, polls.urls 모듈의 path() 함수에서 인수의 이름을 정의했으므로, {% url %} template 태그를 사용하여 url 설정에 정의된 특정한 URL 경로들의 의존성을 제거할 수 있습니다.
+
+저건 polls/가 고정된게 문제인지 question.id가 문제인건지 아니면 그 둘 다 문제인건지
+
+<li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+
+url 'detail' question.id 
+
+흠
+urlpatterns 에
+path('<int:question_id>/', views.detail, name='detail')
+이걸 부르는거구만
+url 'detail' question.id에서
+url은 url.py를 뜻하는 거고
+'detail'은 name을 적은거고
+question.id는 <int:question_id>에 들어가는 구조
+
+지금은 하나의 앱만 만드니까 상관없지만 
+app별로 name이 겹칠 수도 있다
+
+그니까 app_name = 'polls'라고 두고
+ url 'detail' question.id 을
+ url 'polls:detail' question.id 로 바꾸면
+이제 polls에서 detail을 찾겠지
+
+만약 앱 이름이 겹치면?
+...앱 이름은 겹치면 안되나?
+아직은 안나왔으니 pass
