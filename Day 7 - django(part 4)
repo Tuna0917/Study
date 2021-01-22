@@ -1,0 +1,131 @@
+https://docs.djangoproject.com/ko/3.1/intro/tutorial04/
+
+-----before
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+-----after
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>
+
+{% csrf_token %}이 뭔지 모르겠지만 이해하는데는 문제없는듯 (CSRF Protection이 뭘까)
+html할때 label의 for이랑 input의 id를 직접 알아본게 도움이 되네
+
+이제 vote
+
+def vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'error_message': "You didn't select a choice.",
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+question은 뭐 많이 본거고
+
+choice를 고르지 않거나, 없는 경우 except를 실행
+question위치에는 question을 보여주는거겠고
+무슨 메세지 출력해야하는건지 알려주는거고
+
+
+except가 아니면 
+선택한 choice를 +=1 시켜주고 저장
+끄읕
+
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question': question})
+    
+이것도 완전 비슷하고
+
+-----results.html
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a> //투표했던 페이지로 다시 돌아가는거
+
+
+선택지별 투표된 갯수 보여주는 것 같은데 뒤에 {{ choice.votes|pluralize }} 이건 뭐지 
+
+
+제너릭뷰 
+
+처음부터 제너릭뷰를 알려주면 이해하기 너무 어려우니까
+얘네들이 어떻게 동작하는지를 알려준 다음 이거랑 같은 역할을 하는 더 쉬운 것을 알려주는 뭐 그런건가
+
+좋은데 나빠
+
+question_id를 전부 pk로 바꾸네
+물론 vote의 경우는 냅뒀고 (vote는 제너릭뷰로 안바꿀려나보다 or 제너릭뷰가 없나보다)
+
+
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')[:5]
+
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
+
+눈여겨볼점
+
+def가 아니라 class임
+
+Index는 ListView한테서
+Detail과 Results는 DetailView한테서 받네
+
+ListView에 있던 queryset은 아마 오버라이딩한거같은데
+아무래도 기본은 5개만 가져오는게 아니라 전부 가져오는 거라
+(최대)5개까지만 가져오는 기능을 유지하려고 그런듯
+
+
+
+날이 지날수록 날로먹는 느낌인데
+그렇다고 하루에 part 두개 하기는 또 싫고 그러네
+빨리 자바스크립트를 끝내든가 해야지...
+새로운건 없지만 그렇다고 아는건가?라고 물어본다면 Yes and No
+벌써 7일째인데 바뀐게 뭐가 있지?
+
+
+
+
+
