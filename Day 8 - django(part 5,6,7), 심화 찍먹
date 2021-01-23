@@ -50,3 +50,25 @@ views.py의 ResultsView에도 template_name = 'polls/result.html'
 detail.html로 만들어야 했는데 ㅋㅋㅋㅋㅋ
 details.html로 했었던거 
 아이고 머리야
+
+
+-----
+
+
+2. django-polls 디렉토리의 polls 디렉토리로 이동하세요.
+
+뭔가 이상한거같아서 원문을 봤더니
+
+2. Move the polls directory into the django-polls directory.
+
+아이고
+
+
+
+$ python3 -m pip install --user django-polls/dist/django-polls-0.1.tar.gz
+
+WARNING: Requirement 'django-polls/dist/django-polls-0.1.tar.gz' looks like a filename, but the file does not exist
+Processing ./django-polls/dist/django-polls-0.1.tar.gz
+ERROR: Could not install packages due to an EnvironmentError: [Errno 2] No such file or directory: '/Users/heojaeyoung/djangotutorial/mysite/django-polls/dist/django-polls-0.1.tar.gz'
+
+아이고나죽네
