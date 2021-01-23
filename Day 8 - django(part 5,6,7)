@@ -1,0 +1,16 @@
+Part 5 테스트 만드는거 그냥 훑기만 했고 (굳이 지금 파고들 필요 없는 것 같았음)
+
+Part 6부터 문제가 생기기 시작함
+
+http://localhost:8000/polls/를 들어가면 녹색 폰트로 What's up?이 나오는건 맞지만
+
+What's up을 누르면
+
+주소는
+http://localhost:8000/polls/1
+
+페이지에는 TemplateDoesNotExist at /polls/1/이 나옴
+
+자
+
+이게 도대체 무엇인가
