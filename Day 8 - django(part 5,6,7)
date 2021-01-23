@@ -14,3 +14,22 @@ http://localhost:8000/polls/1
 자
 
 이게 도대체 무엇인가
+TemplateDoesNotExist at /polls/3/
+polls/question_detail.html
+
+Request Method:	GET
+Request URL:	http://localhost:8000/polls/3/ (해결?했을 때는 3번째 질문으로 시도했음 1번 질문을 삭제하기도 했고)
+Django Version:	3.1.5
+Exception Type:	TemplateDoesNotExist
+Exception Value:	
+polls/question_detail.html
+Exception Location:	/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/django/template/loader.py, line 47, in select_template
+Python Executable:	/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+Python Version:	3.7.4
+Python Path:	
+['/Users/heojaeyoung/djangotutorial/mysite',
+ '/Library/Frameworks/Python.framework/Versions/3.7/lib/python37.zip',
+ '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7',
+ '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload',
+ '/Users/heojaeyoung/Library/Python/3.7/lib/python/site-packages',
+ '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages']
