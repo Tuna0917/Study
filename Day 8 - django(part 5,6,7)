@@ -33,3 +33,20 @@ Python Path:
  '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload',
  '/Users/heojaeyoung/Library/Python/3.7/lib/python/site-packages',
  '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages']
+
+(대충 그때의 상황)
+
+views.py의 DetailView에도 template_name = 'polls/detail.html'
+views.py의 ResultsView에도 template_name = 'polls/result.html'
+
+왜 results는 잘 작동하는데 detail만 말썽이지?
+
+근데 또 웃긴게 results는 멀쩡함
+봤더니 이제 polls/question_detail.html이 눈에 들어오는 거임
+그래서 polls/templates/polls에 question_detail.html을 만들고 detail.html의 코드를 복사해서 넣었더니 정상작동하더라고
+
+왜 둘 다 코드가 유사한데(사실 똑같은데) detail만 말썽이지?해서 봤더니
+
+detail.html로 만들어야 했는데 ㅋㅋㅋㅋㅋ
+details.html로 했었던거 
+아이고 머리야
