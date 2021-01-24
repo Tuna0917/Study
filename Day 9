@@ -1,0 +1,49 @@
+할게 많아서 개발환경부터 하기로 했음
+https://subicura.com/2017/11/22/mac-os-development-environment-setup.html
+
+저거하다보면 gcc가 또 눈에 밟히는거
+
+Bad CPU type in executable << 이게 계속 나오는데 검색을 해도 뾰족한 방법이 안나오고
+형이 말한 zsh가 생각나서
+bash를 zsh로 바뀌었더니 해결됨 (아마도)
+
+% brew cask install iterm2
+뭔가 잘되다가 갑자기
+Error: Calling brew cask install is disabled! Use brew install [--cask] instead
+그래서 시키는대로 했더니
+% brew install [--cask] 
+zsh: no matches found: [--cask]
+
+??
+
+% brew install --cask  
+Error: Invalid usage: this command requires a formula or cask argument
+
+???
+
+% brew cask install
+Error: Calling brew cask install is disabled! Use brew install [--cask] instead.
+
+?????
+
+% brew install cask
+
+오 뭔가 많이 진행됨
+
+% brew cask install iterm2
+Error: Calling brew cask install is disabled! Use brew install [--cask] instead.
+
+
+아 제발
+
+https://unclean.tistory.com/56
+
+% brew tap homebrew/cask-versions
+
+-----
+
+예전에는 cask를 따로 썼지만 지금은 안쓴다고
+
+% brew install iterm2
+
+해결
