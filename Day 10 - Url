@@ -1,0 +1,81 @@
+도전과제 1 
+
+{% extends "base_generic.html" %}
+
+{% block title %}
+
+<title>Library of Luina</title>
+
+{% endblock %}
+
+
+도전과제 2
+
+Modify the view to generate counts for genres and books that contain a particular word (case insensitive), and pass the results to the context. 
+You accomplish this in a similar way to creating and using num_books and num_instances_available. 
+Then update the index template to include these variables.
+
+아니 뭐 그냥 문자를 하나 정해서 그 문자가 포함되어있는 genre나 book의 개수를 보여줄 수는 있는데
+available에만 a가 있으니까 num_instances_available = BookInstance.objects.filter(status__exact='a').count()에서 'a'를 원하는 단어나 낱말로
+
+잠깐만
+models.py에 BookInstance에
+LOAN_STATUS = (
+        ('m', 'Maintenance'),
+        ('o', 'On loan'),
+        ('a', 'Available'),
+        ('r', 'Reserved'),
+    )
+    
+이게 있는데
+이 'a'인가?
+
+num_instance_available을 참고하게한 이유는
+.objects.filters(???).count()를 쓰라는 거였겠고
+그럼 Book.objects.filters(???).count()
+
+Book에는 뭐가 있었는가
+title = models.CharField(max_length=200)
+
+그러니까
+filters(title__~~~ = "특정 단어")를 써야하고
+__startswith
+__endswith
+__contains
+여기까지는 대소문자 구분하는 애들
+__istartswith
+__iendswith
+__icontains
+대소문자 구분안하는 애들 그러니까
+
+Books.objects.filters(title__icontains = f"{a particular word}"),count()
+이제 def index(request):에
+a_particular_word = 'str'
+num_particular_books = Books.objects.filters(title__icontains = f"{a_particular_word}"),count()
+
+context에는 
+'num_particular_books' : num_particular_books,
+
+index.html에다가 
+<li><strong>Books(Contain 'a_particular_word')</strong> {{ num_particular_books }}</li>
+추가하면
+
+NameError at /catalog/
+name 'Books' is not defined
+ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+num_particular_books = Book.objects.filters(title__icontains = f"{a_particular_word}"),count()
+아 제발ㅋㅋㅋㅋㅋ
+count()앞의 ,와 filter'''s'''는 진짜
+내가 봐도 좀 가관이다
+
+아무튼 내가 원하는 거는 이제 
+
+<input type="text">를 이용해서 거기다가 타이핑하면
+그 단어가 포함된 책과 장르가 몇개 있는지 보여주는 그런 기능은 어떻게 만들지
+
+(표현이 맞는건진 모르겠지만)html에서 값을 받으면 그걸 a_particular_word로 설정해서 출력해주고 싶은데
+으음...
+
+Genre는 스킵 둘이 똑같을거 아냐
+사실 __icontain 찾기였음 이건
+
