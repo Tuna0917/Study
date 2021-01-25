@@ -1,0 +1,99 @@
+숫자만 하염없이 늘어나고
+
+----Model
+
+class Book(models.Model):
+이것이 직접 가지고 있는 거는 title, summary, isbn
+나머지는 다 받아오는 거
+
+하나의 저자는 여러 책을 쓸 수 있고
+하나의 장르에는 여러 책이 존재하고
+영어로 써진 책들은 많이 있고
+
+물론 하나의 제목으로 여러 책이 존재할 수 있지만 보통 제목으로 책을 구분하니까 title까지 받아오긴 좀
+
+내용같은경우는 고유한편이긴 한데 (같으면 표절이잖아(
+
+아무튼 그래서 __str__은 self.title
+
+def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('book-detail', args=[str(self.id)])
+이거는
+흠...
+book-detail보다는 locallibrary:book-detail이 낫지 않을까? 나중에 바꾸려나
+
+얘는 f'{~~}'쓰네 저번거는 안그러던데
+
+language도 추가해야하네 (내가)(직접)
+
+class Language(models.Model):
+
+    language = models.CharField(max_length=100)
+    
+    class Meta:
+        ordering = ['language']
+
+    def __str__(self):
+        return self.language
+        
+        
+저중에서 class Meta는 필요없지만 (어차피 language하나밖에 없으니까)
+그래도 써봐야 늘어서 한번 추가해봄
+
+length가 100인 이유는 가장 긴 영어단어가 45자니까 그거 두개 써도 문제 없을 길이인 100자
+과해도 쓸모없지않나 사실 지정 안하고 싶은데
+
+>>CharField는 작거나 중간 크기의 고정된 길이의 문자열을 정의할 때 사용합니다. 저장되기 위해서는 데이터의 최대 길이(max_length)를 정해주어야 합니다
+
+에휴
+
+
+admind에 Language도 import해주고 admin.site.register(Language)도 적어주고ㅈ
+
+어라
+Genre를 Book 아래로 옮기니까 에러가 생기네?
+왜지?
+
+django-mozilla/locallibrary/catalog/models.py", line 21, in Book
+    genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
+NameError: name 'Genre' is not defined
+
+genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
+
+얘만 Genre야 'Genre'가 아니라
+왜?
+
+-----Admin
+
+list_display = ( ~~ )
+list_filter = ( ~~ )
+fields = ( ~~ )
+
+fieldsets = ( 
+  ( 이름(None으로 아무것도 표시 안할 수 있음), {fields = (~~)} ), 
+  ( ~~~ )
+)
+
+Inline = [ ~~ ]
+
+챌린지는 
+
+class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ('id','book','imprint','status','due_back')
+    
+    
+class BooksInLine(admin.TabularInline):
+    model = Book
+    
+# Define the admin class
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
+    fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+    inlines = [BooksInLine]
+
+
+
+
+
+
