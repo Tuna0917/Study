@@ -1,0 +1,66 @@
+도전과제
+
+사이드바에 Staff / All borrowed를 스태프만 볼 수 있게
+base_generic.html의 {% block sidebar %}에 유저만 보이게 하는 법이 {% if user.is_authenticated %}니까
+
+{% user.is_staff %}를 이용하면 staff만 볼 수 있겠지
+(쓰지말라고 했지만 일단 만들고 봐야지) https://yonghyunlee.gitlab.io/python/permission-page/
+
+-----bookinstance_list_borrowed_book.html
+...
+<a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }}) - {{bookinst.borrower}}
+...
+
+-----base~.html - block sidebar
+
+{% if user.is_staff %}
+  <li>Staff</li>
+  <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+{% endif %} 
+
+-----views.py
+class AllLoanedBooksListView(LoginRequiredMixin,generic.ListView):
+    """Generic class-based view listing books on loan to current user."""
+    model = BookInstance
+    template_name ='catalog/bookinstance_list_borrowed_book.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(status__exact='o').order_by('due_back')
+
+
+-----form.py
+
+import datetime
+
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _ <<<<<<<<<<< ugettext_lazy가 아니라 gettext_lazy임
+
+class RenewBookForm(forms.Form):
+    renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3).")
+
+    def clean_renewal_date(self):
+        data = self.cleaned_data['renewal_date']
+
+        # Check if a date is not in the past.
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - renewal in past'))
+
+        # Check if a date is in the allowed range (+4 weeks from today).
+        if data > datetime.date.today() + datetime.timedelta(weeks=4):
+            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+
+        # Remember to always return the cleaned data.
+        return data
+ 
+ -----urls.py
+ 
+path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
+path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew-book-librarian'),
+왜 위에는 ink:pk고 아래는 uuid:pk임
+
+
+
+
+    
